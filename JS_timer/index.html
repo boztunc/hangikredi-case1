@@ -1,0 +1,27 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>HangiKredi | Timer</title>
+</head>
+<script>
+    window.onload = function () {
+        var count = 0;
+        var element = document.getElementById('count');
+        var timer = setInterval(function () {
+            count = count + 5;
+            if (count == 50)
+                clearInterval(timer)
+            element.innerText = count;
+
+        }, 1000);
+    }
+</script>
+
+<body>
+    <b id="count">0</b>
+</body>
+
+</html>

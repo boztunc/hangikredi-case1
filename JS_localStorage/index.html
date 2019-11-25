@@ -1,0 +1,31 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>HangiKredi | Cookie</title>
+    <script type="text/javascript">
+        window.onload = function () {
+            var visitCount = Number(localStorage.getItem('visitCount'));
+            var visited = Boolean(sessionStorage.getItem('visited'));
+            var lastSession = Date(sessionStorage.getItem('lastSession'));
+            var date = new Date();
+            var fullDate = date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear() + " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
+            if (!visited) {
+                visitCount++
+                localStorage.setItem('lastSession', fullDate);
+            }
+            localStorage.setItem('visitCount', visitCount);
+            sessionStorage.setItem('visited', visited);
+
+            document.write("Siteyi <b>" + localStorage.getItem('visitCount') + "</b> kere ziyaret ettiniz. <br />");
+            document.write("Son Ziyaret Edilen Zaman: <b>" + localStorage.getItem('lastSession') + "</b>");
+        }
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

@@ -1,0 +1,8 @@
+@function GetImgForCdn($image) {
+  $imageUrl: "https://xcdn.com/assets" + $image;
+  @return $imageUrl;
+}
+
+body {
+  background: url(GetImgForCdn("/images/test.jpg"));
+}

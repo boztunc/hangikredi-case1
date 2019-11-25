@@ -1,0 +1,586 @@
+//FONTS
+@font-face {
+  font-family: "OpenSans-Regular";
+  src: url(../fonts/OpenSans-Regular.ttf);
+}
+@font-face {
+  font-family: "OpenSans-Bold";
+  src: url(../fonts/OpenSans-Bold.ttf);
+}
+@font-face {
+  font-family: "OpenSans-SemiBold";
+  src: url(../fonts/OpenSans-SemiBold.ttf);
+}
+
+//Variables
+
+$primary-font: "OpenSans-Regular", sans-serif;
+$primary-font-bold: "OpenSans-Bold", sans-serif;
+$primary-font-semiBold: "OpenSans-SemiBold", sans-serif;
+
+//Mixins
+@mixin breakpoint($point) {
+  @if $point == desktop {
+    @media (max-width: 1250px) {
+      @content;
+    }
+  } @else if $point == mobile {
+    @media (max-width: 767px) {
+      @content;
+    }
+  }
+}
+
+//Extends
+%page-center-screen {
+  width: 100%;
+  max-width: 1250px;
+  margin: 0 auto;
+}
+%main-center-screen {
+  max-width: 970px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+%select-list {
+  display: inherit;
+  height: 44px;
+  border: 1px solid #6b818f;
+  border-radius: 10px;
+  background: white;
+  padding: 0 4px 6px 8px;
+  margin-right: 10px;
+
+  &::before {
+    font-family: "Font Awesome 5 Free";
+    content: "\f107";
+    position: relative;
+    float: right;
+    color: #acacac;
+    font-weight: 900;
+    top: 15px;
+    right: 13px;
+    font-size: 19px;
+  }
+
+  span {
+    display: inherit;
+    color: #acacac;
+    font-size: 12px;
+    @include breakpoint(mobile) {
+      color: #636363;
+      font-size: 16px;
+      font-family: $primary-font-bold;
+      transform: translate(10px, 10px);
+    }
+    @include breakpoint(mobile) {
+      display: none;
+    }
+  }
+  select {
+    display: inherit;
+    width: 100%;
+    color: #333333;
+    font-size: 14px;
+    background: unset;
+    border: unset;
+    font-family: $primary-font-bold;
+    -webkit-appearance: button;
+
+    :first-child {
+      display: none;
+    }
+    &:focus {
+      outline: unset;
+    }
+    @include breakpoint(mobile) {
+      font-family: $primary-font-bold;
+      font-size: 16px;
+      color: #636363;
+      width: 95%;
+      padding: 10px;
+    }
+  }
+  @include breakpoint(mobile) {
+    margin: 8px 0;
+    padding: 0;
+  }
+}
+
+%horizontal-line {
+  width: 1px;
+  background-color: #ebebeb;
+  border: none;
+  margin: 0 20px 0 20px;
+}
+
+%main-panel-width {
+  max-width: 916px;
+  width: 100%;
+}
+
+%product-detail-button {
+  margin-top: 85px;
+  background-color: #376fe1;
+  border-radius: 10px;
+  border: unset;
+  font-family: $primary-font-bold;
+  font-size: 16px;
+  color: white;
+  max-width: 209px;
+  width: 100%;
+  height: 43px;
+}
+
+//GLOBAL STYLE
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+body {
+  margin: 0;
+  font-family: $primary-font;
+  background: #c7c7c7;
+  @include breakpoint(mobile) {
+    background: #ebebeb;
+  }
+}
+h1 {
+  margin: 0;
+}
+
+//DOM STYLE
+.header {
+  width: 100%;
+  height: auto;
+  background: url(../images/header_bg.png);
+  background-size: 2410px;
+  background-position-x: -280px;
+  background-position-y: -577px;
+  border: 2px solid #9d5c5c;
+
+  &__container {
+    @extend %page-center-screen;
+    position: relative;
+    display: flex;
+    height: 350px;
+    z-index: 2;
+    padding: 0 19px 0 19px;
+    align-items: center;
+
+    .header__left_block {
+      width: 50%;
+
+      h1 {
+        font-size: 36px;
+        font-family: $primary-font-bold;
+        @include breakpoint(mobile) {
+          font-size: 24px;
+        }
+      }
+      p {
+        font-size: 26px;
+        margin: 20px 0 20px 0;
+        font-family: $primary-font-semiBold;
+        @include breakpoint(mobile) {
+          font-size: 16px;
+        }
+      }
+
+      button {
+        width: 70%;
+        max-width: 355px;
+        height: 59px;
+        border: 1px;
+        border-radius: 5px;
+        color: white;
+        font-size: 18px;
+        font-family: $primary-font-bold;
+        background-color: #376fe1;
+        font-weight: bold;
+        &:hover {
+          cursor: pointer;
+        }
+        &:focus {
+          outline: unset;
+        }
+        @include breakpoint(mobile) {
+          width: 100%;
+        }
+      }
+      img {
+        width: 100%;
+      }
+
+      @include breakpoint(mobile) {
+        text-align: center;
+        width: auto;
+        margin: 0 auto;
+      }
+    }
+
+    .header__right_block {
+      width: 50%;
+      img {
+        width: 100%;
+        margin-top: 125px;
+      }
+      @include breakpoint(mobile) {
+        display: none;
+      }
+    }
+
+    @include breakpoint(mobile) {
+      padding: 0;
+      height: fit-content;
+    }
+  }
+
+  &__opacity {
+    z-index: 1;
+    background-color: black;
+    opacity: 0.13;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 350px;
+    @include breakpoint(mobile) {
+      display: none;
+    }
+  }
+  @include breakpoint(mobile) {
+    background: #ebebeb;
+    border: unset;
+  }
+
+  @include breakpoint(mobile) {
+    width: auto;
+    padding: 20px 15px;
+  }
+}
+
+.main {
+  @extend %main-center-screen;
+  margin-top: 39px;
+
+  &__calc_panel {
+    background: white;
+    border-radius: 10px 10px 5px 5px;
+    @include breakpoint(mobile) {
+      border-radius: 10px;
+      margin: 10px;
+      padding-bottom: 5px;
+      box-shadow: 0 0 50px black;
+    }
+  }
+
+  &__calc_header {
+    display: inline-block;
+    background-color: #eeeeee;
+    padding: 23px 20px 20px 30px;
+    margin: 2px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    @extend %main-panel-width;
+
+    @include breakpoint(mobile) {
+      display: block;
+      max-width: unset;
+      width: auto;
+      margin: 1px;
+      padding: 12px 13px 18px 13px;
+    }
+  }
+
+  &__car_type {
+    @extend %select-list;
+    width: 210.31px;
+    @include breakpoint(mobile) {
+      width: auto;
+    }
+  }
+  &__car_age {
+    @extend %select-list;
+    width: 229.96px;
+    @include breakpoint(mobile) {
+      width: auto;
+    }
+  }
+  &__engine_capacity {
+    @extend %select-list;
+    width: 253px;
+    @include breakpoint(mobile) {
+      display: none;
+    }
+  }
+  &__input_capacity {
+    @extend %select-list;
+    width: 100%;
+    display: none;
+    padding: 0;
+    color: #636363;
+    font-size: 16px;
+    font-family: $primary-font-bold;
+    text-indent: 10px;
+    @include breakpoint(mobile) {
+      display: block;
+    }
+    &::placeholder {
+      color: #636363;
+    }
+    &:focus {
+      outline: none;
+    }
+  }
+  &__calc_button {
+    display: inherit;
+    vertical-align: top;
+    float: right;
+    button {
+      background-color: #ec561b;
+      color: white;
+      font-family: $primary-font-bold;
+      font-size: 18px;
+      border-radius: 5px;
+      width: 139px;
+      height: 49px;
+      border: unset;
+      box-shadow: 1px 1px 3px 0px #ec561b;
+      cursor: pointer;
+      @include breakpoint(mobile) {
+        width: 100%;
+        border-radius: 10px;
+      }
+    }
+    @include breakpoint(mobile) {
+      float: unset;
+    }
+  }
+  &__calc_result {
+    width: 100%;
+    padding-left: 30px;
+    align-items: center;
+    display: none;
+
+    span {
+      color: #636363;
+      font-size: 18px;
+      font-family: $primary-font-semiBold;
+      @include breakpoint(mobile) {
+        font-family: $primary-font-bold;
+        font-size: 20px;
+      }
+    }
+    strong {
+      color: black;
+      font-family: $primary-font-bold;
+      font-size: 18px;
+      margin-left: 10px;
+      @include breakpoint(mobile) {
+        margin-left: 0;
+        font-size: 21px;
+      }
+    }
+    .main__short_line {
+      @extend %horizontal-line;
+      height: 42px;
+      @include breakpoint(mobile) {
+        display: none;
+      }
+    }
+    .main__long_line {
+      @extend %horizontal-line;
+      height: 80px;
+      margin: 0 0 0 50px;
+      @include breakpoint(mobile) {
+        height: 1px;
+        width: 100%;
+        margin-top: 5px;
+        margin-left: 0;
+      }
+    }
+
+    .main__result_total {
+      display: grid;
+      text-align: center;
+      margin: 0 auto;
+      span {
+        color: black;
+        margin: 0;
+        font-family: $primary-font-bold;
+      }
+      strong {
+        color: #ed5523;
+      }
+      @include breakpoint(mobile) {
+        display: block;
+        padding: 10px 0;
+        font-size: 21px;
+        width: 320px;
+        margin: 0 auto;
+        text-align: right;
+      }
+    }
+
+    @include breakpoint(mobile) {
+      padding: 0;
+      text-align: center;
+
+      .main__first_month_price,
+      .main__sec_month_price {
+        width: 320px;
+        margin: 0 auto;
+        text-align: right;
+      }
+    }
+  }
+  &__product_container {
+    margin-top: 75px;
+    .main__card_panel {
+      width: 98%;
+      display: inline-flex;
+      background: white;
+      padding: 15px 20px 10px 0;
+      margin-bottom: 16px;
+      .main__product {
+        width: 55%;
+        text-align: center;
+        h3 {
+          font-family: $primary-font-bold;
+          color: #636363;
+          font-size: 20px;
+          margin: 0 0 23px 10px;
+          @include breakpoint(mobile) {
+            font-size: 16px;
+            margin-left: 0;
+            min-width: 140px;
+          }
+        }
+        @include breakpoint(mobile) {
+          width: auto;
+          text-align: left;
+          padding-left: 10px;
+          white-space: nowrap;
+        }
+      }
+      .main__product_info {
+        width: 100%;
+        padding: 40px 0 23px 0;
+        ul {
+          padding-left: 0;
+          li {
+            display: block;
+            color: #636363;
+            font-size: 18px;
+            @include breakpoint(mobile) {
+              display: list-item;
+              font-size: 14px;
+            }
+          }
+        }
+        button {
+          @extend %product-detail-button;
+          margin-top: 13px;
+          right: 11px;
+          position: relative;
+        }
+
+        @include breakpoint(mobile) {
+          padding-left: 3px;
+          padding-top: 50px;
+          padding-bottom: 0;
+        }
+      }
+      .main__product_price {
+        width: 100%;
+        text-align: right;
+        span {
+          color: #ec561b;
+          display: block;
+          font-size: 20px;
+          @include breakpoint(mobile) {
+            font-size: 14px;
+          }
+        }
+        span:first-child {
+          @include breakpoint(mobile) {
+            font-size: 18px;
+          }
+          font-family: $primary-font-bold;
+        }
+        button {
+          @extend %product-detail-button;
+        }
+        @include breakpoint(mobile) {
+          width: auto;
+          white-space: nowrap;
+          height: fit-content;
+          position: absolute;
+          right: 11px;
+        }
+      }
+      @include breakpoint(mobile) {
+        margin-bottom: 0;
+        border-bottom: 2px solid #ebebeb;
+        padding-right: 0;
+        padding-bottom: 10px;
+        width: 100%;
+      }
+    }
+    .main__card_panel--gray {
+      background-color: #e3e3e3;
+    }
+    .main__card_panel--gray_mobile {
+      @include breakpoint(mobile) {
+        background-color: #f5f5f5;
+      }
+    }
+    .main__card_panel--white_mobile {
+      @include breakpoint(mobile) {
+        background-color: white;
+      }
+    }
+    @include breakpoint(mobile) {
+      display: block;
+      margin-top: 55px;
+    }
+  }
+}
+
+.footer {
+  @extend %page-center-screen;
+  border-top: 1px solid black;
+  padding: 10px 15px;
+  nav {
+    ul {
+      display: flex;
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      li {
+        a {
+          color: #696969;
+          text-decoration: none;
+          font-size: 14px;
+
+          &::after {
+            content: ">";
+            padding: 0 3px;
+            vertical-align: middle;
+          }
+        }
+        &:last-child {
+          font-size: 18px;
+          font-family: $primary-font-bold;
+        }
+      }
+    }
+  }
+
+  @include breakpoint(mobile) {
+    width: auto;
+    max-width: unset;
+    margin-top: 30px;
+  }
+}

@@ -1,0 +1,20 @@
+@mixin fontSetting($size: "", $weight: "", $color: "", $hoverColor: "") {
+  @if $size != "" {
+    font-size: $size;
+  }
+  @if $weight != "" {
+    font-weight: $weight;
+  }
+  @if $color != "" {
+    color: $color;
+  }
+  @if $hoverColor != "" {
+    &:hover {
+      color: $hoverColor;
+    }
+  }
+}
+
+.test {
+  @include fontSetting(16px, "", "", #fff);
+}
